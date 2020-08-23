@@ -18,14 +18,14 @@ Clone the repo and enter it:
 
     $ git clone git@github.com:JunYinghu/todoist-app-test.git
 
-Token and Url endpoint setup
+### Token and Url endpoint setup
 
 ```python
 apitoken =<your todoist apitoken>
 apiendpoint = https://api.todoist.com/sync/v8/sync/?sync_token=*
 ```
 
-Android Emulator
+### Android Emulator
 
 Android studio is recommended.
 
@@ -46,7 +46,7 @@ change to your deviceName
 ```
 
 
-Appium 
+### Appium 
 
 Appium desktop Version 1.6.2
 
