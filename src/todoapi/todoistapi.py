@@ -14,15 +14,15 @@ class TodoistAPIFunc(object):
     def project_delete_existing(self, api_token, api_endpoint, project_name):
         api = todoist.api.TodoistAPI(api_token, api_endpoint)
         api.sync()
-        for project_item in api.state['projects']:
-            # if project_item["name"] != "Inbox":
-            #     project_item.delete()
-            print(project_item)
+        print(api.state['projects'])
+        for project in api.state['projects']:
+            self.project_delete(api_token, project['id'])
 
-    def project_delete(self, api_token):
-        api = todoist.api.TodoistAPI(api_token)
+    def project_delete(self, api_token, api_endpoint, project_id):
+        api = todoist.api.TodoistAPI(api_token, api_endpoint)
         api.sync()
-        project_deleted_api = api.projects.get_by_id('$316258e5-e378-11ea-a382-00e18c41a16c')
+        print(api.state['projects'])
+        project_deleted_api = api.projects.get_by_id(project_id)
         project_deleted_api.delete()
         api.commit()
 
@@ -32,7 +32,6 @@ class TodoistAPIFunc(object):
         for task in api.state['items']:
             if task['content'] == task_name:
                 return task['id']
-                break
 
     def task_reopen(self, api_token, api_endpoint, task_id):
         api_token = api_token
@@ -46,3 +45,4 @@ class TodoistAPIFunc(object):
         api.commit()
         for task in api.state['items']:
             print(task)
+

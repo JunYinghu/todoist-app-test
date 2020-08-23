@@ -1,5 +1,3 @@
-from appium import webdriver
-
 from src.mobilefunc.basicstep import BaseMobileFunc
 
 

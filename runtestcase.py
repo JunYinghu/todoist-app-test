@@ -10,8 +10,7 @@ def test_create_verify_project(api_endpoint, api_token):
     project_api = TodoistAPIFunc()
 
     # delete existing project which has the same or including the new created project string
-    # project_api.project_delete_existing(api_token, api_endpoint, project_name)
-
+    project_api.project_delete_existing(api_token, api_endpoint, project_name)
     project_api.project_create(api_token, api_endpoint, project_name)
 
     # step to verify the new created project on mobile
@@ -23,6 +22,7 @@ def test_create_verify_project(api_endpoint, api_token):
 
     # verify project on mobile and only 1 project showing in search result
     assert verify_project.verify_project(project_name) >= 1
+    verify_project.close_driver()
 
 
 def test_reopen_task(api_token, api_endpoint):
@@ -46,3 +46,4 @@ def test_reopen_task(api_token, api_endpoint):
 
     # verify re-opened task name on mobile showing
     assert task_mobile.verify_task_reopen() == task_name
+    task_mobile.close_driver()

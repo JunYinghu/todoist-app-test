@@ -57,3 +57,6 @@ class BaseMobileFunc(object):
             if project.text == open_project:
                 project.click()
                 break
+
+    def close_driver(self):
+        self.driver.quit()
