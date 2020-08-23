@@ -47,13 +47,11 @@ class BaseMobileFunc(object):
 
         el_project_name_list = self.driver.find_elements_by_class_name('android.widget.TextView')
         for project in el_project_name_list:
-            print(project.text)
             if project.text == searched_project:
                 project_found_count = project_found_count + 1
         return project_found_count
 
     def open_project(self, open_project):
-        # el_open_project = self.driver.find_element_by_android_uiautomator('text(' + '\"' + open_project + '\"' + ')')
         el_project_name_list = self.driver.find_elements_by_class_name('android.widget.TextView')
         for project in el_project_name_list:
             if project.text == open_project:
