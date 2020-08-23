@@ -1,10 +1,5 @@
-##from todoist.api import TodoistAPI
-
 import todoist
 
-
-# api_token = 'df2f60dd323adfdede87b1dda718812dd0197da6'
-# api_endpoint = 'https://api.todoist.com/sync/v8/sync/?sync_token=*'
 
 class TodoistAPIFunc(object):
 
@@ -31,20 +26,6 @@ class TodoistAPIFunc(object):
         project_deleted_api.delete()
         api.commit()
 
-    #
-    # def task_get(self, api_token, api_endpoint, task_name, project_id):
-    #     api = todoist.api.TodoistAPI(api_token, api_endpoint)
-    #     api.sync()
-    #     for task in api.state['items']:
-    #         print('i am here')
-    #         print(task)
-    #         if task['content'] == task_name and task['project_id'] == project_id:
-    #             print('i am 1111111')
-    #             print(task['id'])
-    #             print(task['content'])
-    #             break
-    #         return task['id'], task['content']
-
     def task_get(self, api_token, api_endpoint, task_name):
         api = todoist.api.TodoistAPI(api_token, api_endpoint)
         api.sync()
@@ -52,12 +33,6 @@ class TodoistAPIFunc(object):
             if task['content'] == task_name:
                 return task['id']
                 break
-
-    def task_delete(self, api_token):
-        api = todoist.api.TodoistAPI(api_token)
-        item = api.items.get_by_id(4121236136)
-        item.delete()
-        api.commit()
 
     def task_reopen(self, api_token, api_endpoint, task_id):
         api_token = api_token

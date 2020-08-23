@@ -9,6 +9,16 @@ This project is recommend Python 3.8
 ```bash
 pytest runtestcase.py
 ```
+## Running Conditions
+In order to run test cases without breaks:  
+1. you should have a registered account with email login method
+2. Delete existing project which has the same string with the new created 
+
+```python
+project_name = "ProjectCreation"
+```
+
+
 
 ## Development & Running Setup
 ### Build Project

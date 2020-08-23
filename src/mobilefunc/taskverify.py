@@ -6,6 +6,11 @@ class TaskFunc(BaseMobileFunc):
         # project_name = project_name
         # self.search_project(project_name)
         # self.open_project(project_name)
+        el_existing_task_list = self.driver.find_elements_by_class_name("android.widget.CheckBox")
+        if len(el_existing_task_list) != 0:
+            for task_checkbox in el_existing_task_list:
+                task_checkbox.click()
+
         el_create_task_button = self.driver.find_element_by_id("com.todoist:id/fab")
         el_create_task_button.click()
         self.task_name()

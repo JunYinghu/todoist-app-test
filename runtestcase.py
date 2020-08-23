@@ -3,7 +3,6 @@ from src.mobilefunc.taskverify import TaskFunc
 from src.todoapi.todoistapi import TodoistAPIFunc
 
 project_name = "ProjectCreation"
-project_verify_errorMessage = "not found created project" + project_name
 
 
 def test_create_verify_project(api_endpoint, api_token):
@@ -26,7 +25,7 @@ def test_create_verify_project(api_endpoint, api_token):
     assert verify_project.verify_project(project_name) >= 1
 
 
-def test_reopen_task2(api_token, api_endpoint):
+def test_reopen_task(api_token, api_endpoint):
     task_api = TodoistAPIFunc()
 
     # go to mobile to add 1 task
@@ -40,10 +39,10 @@ def test_reopen_task2(api_token, api_endpoint):
     task_id = task_api.task_get(api_token, api_endpoint, task_name)
     assert task_id is not None
 
-    # re-login mobile and complete the task
+    # change to mobile and complete the task
     task_mobile.complete_task()
     # re-open the task via api
     task_api.task_reopen(api_token, api_endpoint, task_id)
 
-    # verify task name on mobile showing
+    # verify re-opened task name on mobile showing
     assert task_mobile.verify_task_reopen() == task_name
