@@ -1,49 +1,56 @@
+import allure
+import pytest
+
 from src.mobilefunc.projectverify import ProjectFunc
 from src.mobilefunc.taskverify import TaskFunc
 from src.todoapi.todoistapi import TodoistAPIFunc
 
-project_name = "ProjectCreation"
+CREATED_PROJECT_NAME = "Python Creation"
+EMAIL_ID = "hujy11@gmail.com"
+PASSWORD = "yxchappy+123"
 
 
-def test_create_verify_project(api_endpoint, api_token):
-    # step to create a new project
+@allure.description("To test project created via API")
+@allure.severity(allure.severity_level.CRITICAL)
+def test_create_verify_project(api_token, api_endpoint):
     project_api = TodoistAPIFunc()
+    project_api.project_update_existing(api_token, api_endpoint, CREATED_PROJECT_NAME)
+    project_api.project_create(api_token, api_endpoint, CREATED_PROJECT_NAME)
 
-    # delete existing project which has the same or including the new created project string
-    project_api.project_delete_existing(api_token, api_endpoint, project_name)
-    project_api.project_create(api_token, api_endpoint, project_name)
-
-    # step to verify the new created project on mobile
     verify_project = ProjectFunc()
     verify_project.connection_mobile()
-    verify_project.login_todolist()
+    verify_project.login_todoist(EMAIL_ID, PASSWORD)
 
-    # expected_project = verify_project.project_list(project_name)
+    # due to the update_existing method, to verify project count more than 1
+    assert verify_project.verify_project(CREATED_PROJECT_NAME) >= 1
 
-    # verify project on mobile and only 1 project showing in search result
-    assert verify_project.verify_project(project_name) >= 1
-    verify_project.close_driver()
+    verify_project.back_main_page_from_search()
+    verify_project.change_view()
+    verify_project.user_logout()
+    verify_project.quit_driver()
 
 
+@allure.description("To test verify task reopen via API")
+@allure.severity(allure.severity_level.CRITICAL)
 def test_reopen_task(api_token, api_endpoint):
-    task_api = TodoistAPIFunc()
-
-    # go to mobile to add 1 task
-    # return to task name
     task_mobile = TaskFunc()
     task_mobile.connection_mobile()
-    task_mobile.login_todolist()
+    task_mobile.login_todoist(EMAIL_ID, PASSWORD)
     task_name = task_mobile.create_task()
 
-    # verify task via api task_id
+    task_api = TodoistAPIFunc()
     task_id = task_api.task_get(api_token, api_endpoint, task_name)
     assert task_id is not None
 
-    # change to mobile and complete the task
     task_mobile.complete_task()
-    # re-open the task via api
     task_api.task_reopen(api_token, api_endpoint, task_id)
 
-    # verify re-opened task name on mobile showing
     assert task_mobile.verify_task_reopen() == task_name
-    task_mobile.close_driver()
+
+    task_mobile.change_view()
+    task_mobile.user_logout()
+    task_mobile.quit_driver()
+
+
+if __name__ == "__main__":
+    pytest.main(["-s", "runtestcase.py"])
