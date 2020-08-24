@@ -8,7 +8,7 @@ DEVICE_NAME = 'Pixel_XL_API_30'
 
 
 # Pixel_XL_API_30
-# TodoListAndroid_API_24
+# TodoistAndroid_API_24
 
 class BaseMobileFunc(object):
 

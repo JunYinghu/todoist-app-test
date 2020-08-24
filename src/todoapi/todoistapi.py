@@ -41,7 +41,7 @@ class TodoistAPIFunc(object):
                 print(task)
             return task['id']
 
-    @allure.step("re-opend a task based on given task id")
+    @allure.step("re-opened a task based on given task id")
     def task_reopen(self, api_token, api_endpoint, task_id):
         api = todoist.api.TodoistAPI(api_token, api_endpoint)
         api.sync()

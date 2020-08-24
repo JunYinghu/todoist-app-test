@@ -6,8 +6,8 @@ from src.mobilefunc.taskverify import TaskFunc
 from src.todoapi.todoistapi import TodoistAPIFunc
 
 CREATED_PROJECT_NAME = "Python Creation"
-EMAIL_ID = "hujy11@gmail.com"
-PASSWORD = "yxchappy+123"
+EMAIL_ID = ""
+PASSWORD = ""
 
 
 @allure.description("To test project created via API")
