@@ -4,7 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 APPIUM_LOCAL_HOST_URL = 'http://localhost:4723/wd/hub'
 PLATFORM_VERSION = '7.0'
-DEVICE_NAME = 'Pixel_XL_API_30'
+DEVICE_NAME = 'TodoListAndroid_API_24'
 
 
 # Pixel_XL_API_30
@@ -78,7 +78,7 @@ class BaseMobileFunc(object):
             self.driver.find_element_by_android_uiautomator('text("Log out")').click()
         except NoSuchElementException:
             self.swipe_down()
-        self.driver.find_element_by_android_uiautomator('text("Log out")').click()
+            self.driver.find_element_by_android_uiautomator('text("Log out")').click()
         self.driver.find_element_by_id('android:id/button1').click()
 
     @allure.step("quit driver")

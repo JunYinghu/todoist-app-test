@@ -1,2 +1,2 @@
-./src/utility
+./src/utility/commonfunc.py
 ./allurereport

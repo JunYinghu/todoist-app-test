@@ -4,6 +4,8 @@ Welcome to the todoist app test project. this project is designed to test an app
 
 This project is recommend Python 3.8 with pytest framework
 
+Test cases were tested successfully on 2 models (Android devices) with different display resolution but recommend high resolution
+
 ## Running test cases
  The recommended way to run your tests would be in Pytest framework:
 ```bash
@@ -41,13 +43,13 @@ Clone the repo and enter it:
 
 ### Token and Url endpoint setup
 
-
+pytest.ini
 ```python
 API_TOKEN = <your todoist apitoken>
 API_ENDPOINT = https://api.todoist.com/sync/v8/sync/?sync_token=*
 ```
 ### Email setup
-
+runtestcase.py
 ```python
 EMAIL_ID = "<your email id>"
 PASSWORD = "<your email password>"
@@ -59,12 +61,12 @@ Android studio is recommended.
 
 Android version 7.0 is recommend
 
-change to your deviceName
+basicstep.py
 
 ```python
 APPIUM_LOCAL_HOST_URL = 'http://localhost:4723/wd/hub'
 PLATFORM_VERSION = '7.0'
-DEVICE_NAME = 'TodoListAndroid_API_24'
+DEVICE_NAME = 'TodoistAndroid_API_24'
 
     def connection_mobile(self):
         desired_caps = {'platformName': 'Android', 'platformVersion': PLATFORM_VERSION, 'deviceName': DEVICE_NAME,

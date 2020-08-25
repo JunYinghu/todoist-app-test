@@ -38,15 +38,15 @@ class TodoistAPIFunc(object):
         api.sync()
         for task in api.state['items']:
             if (task['content'] == task_name) and (task['date_completed'] is None):
-                print(task)
-            return task['id']
+                # print(task)
+                return task['id']
 
     @allure.step("re-opened a task based on given task id")
     def task_reopen(self, api_token, api_endpoint, task_id):
         api = todoist.api.TodoistAPI(api_token, api_endpoint)
         api.sync()
         item = api.items.get_by_id(task_id)
-        item.update(date_completed=None)
+        item.update(date_completed={'date': 'None'})
         item.update(checked=0)
         item.update(in_history=0)
         api.commit()
