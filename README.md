@@ -25,11 +25,12 @@ This project is integrated with Allure Report
 ## Running Conditions
 In order to run test cases without breaks:  
 1. you should have a registered account with email login method
-2. Either deletion of existing project <**ProjectCreation** > or replacing of project name <**ProjectCreation**>
-3. Delete existing task name with string <**testtask**>
+2. Either deletion of existing project <**Python Creation** > or replacing of project name <**Python Creation**>
+3. Delete existing task name with string <**Task Creation**>
 
 ```python
-project_name = "ProjectCreation"
+CREATED_PROJECT_NAME = "Python Creation"
+TASK_NAME = "Task Creation"
 ```
 
 
